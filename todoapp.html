@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<title>Ela's To Do App - only HTML,CSS and JS</title>
+	<style type="text/css">
+		body {
+			background-color: azure;	
+			border: solid;
+			align-content: center;		
+		}
+		div {
+			width: relative;	
+			background-color: powderblue;	
+			padding: 50px 50px 50px 50px;
+			margin: 50px 50px 50px 50px;
+			text-align: center;
+		}
+		#inputToDo {			
+			height: 20px;
+			width: 500px;
+		}
+		li {
+		/*	width: 500px;
+			height: 20px;*/
+			padding: 5px 5px 5px 175px;
+			width: relative;
+			text-align: left;
+			list-style-type: none;
+			vertical-align:center;
+		}
+		.delete {
+			padding: 15px 5px 0px 5px;			
+			vertical-align:bottom;
+		}
+
+	</style>
+	<script type="text/javascript">
+
+		function addToDo(txt) {
+			if(txt.length == 0) {
+				return;
+			}
+			let ul = document.getElementById("todoList");
+			let li = document.createElement("li");
+			let text = document.createTextNode(txt);
+			let button = document.createElement('input');
+			button.setAttribute('type','image');
+			button.setAttribute('class','delete');
+			button.setAttribute('onclick','deleteToDo(this)');
+			button.setAttribute('src','delete.png');
+			button.setAttribute('width','25');
+			button.setAttribute('height','25');
+			li.appendChild(text);
+			li.appendChild(button);
+
+			ul.appendChild(li);		
+			document.forms['todoform'].reset();
+		}
+
+		function deleteToDo(btn){
+			console.log(btn);
+			btn.parentNode.remove();
+		}
+
+	</script>
+	<body>
+		<div>
+			<form name="todoform" onsubmit="return false">
+				<input type="text" id="inputToDo" name="inputToDo" placeholder="Enter your todos">
+				<button onclick=addToDo(inputToDo.value)>Add</button> 
+				<ul name="todoList" id="todoList"></ul>
+			</form>			
+		</div>
+	</body>
+
+</html>
